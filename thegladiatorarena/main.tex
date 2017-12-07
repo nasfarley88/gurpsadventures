@@ -1,0 +1,138 @@
+\documentclass[twocolumn]{memoir}
+\usepackage[british]{babel}
+
+
+\usepackage{libertine}
+\renewcommand*\familydefault{\sfdefault}  %% Only if the base font of the document is to be sans serif
+% \usepackage[T1]{fontenc}
+\usepackage{tabularx}
+
+% \usepackage[utf8]{inputenc}
+%\usepackage{flushend}
+\usepackage{tcolorbox}
+
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{xparse}
+
+\usepackage{luacode}
+
+\setlength{\RaggedRightParindent}{\parindent}
+
+\newtcolorbox{commentbox}{colback=red!5!white,colframe=red!75!black,title=Comment}
+\newtcolorbox{tldr}{colback=blue!5!white,colframe=blue!75!black,title={TL;DR}}
+\newtcolorbox{gmtip}{colback=blue!5!white,colframe=blue!75!black,title={GM tip!}}
+
+
+\newenvironment{firstperson}{%
+\itshape%
+\fancybreak{\rule{0.7\linewidth}{1pt}}%
+}{%
+\fancybreak{\rule{0.7\linewidth}{1pt}}%
+}
+
+\title{The Gladiator Arena}
+\author{Nathanael Farley}
+
+\luadirect{require("gurps.lua")}
+\typeout{(gurps.lua)}
+
+\newenvironment{character}[1]{%
+  \luadirect{character = create_character(#1)}%
+}{%
+  \luadirect{print_character()}
+}
+\newcommand\disadvantage[2]{%
+  \luadirect{character.disadvantages["#1"] = vantage(#2)}
+}
+\newcommand\advantage[2]{%
+  \luadirect{character.advantages["#1"] = vantage(#2)}
+}
+\NewDocumentCommand\skill{mom}{%
+  \IfNoValueTF{#2}
+  {\luadirect{character.skills["#1"] = valued_trait(#3)}}
+  {% \luadirect{character.skills["#1"] = valued_trait(#3)}
+    \luadirect{
+      x = split("#2")
+      points = calculate_skill_points(x[1], x[2], #3)
+      character.skills["#1"] = valued_trait(#3, points)
+    }
+  }
+}
+
+\begin{document}
+\RaggedRight
+\maketitle
+\chapter{Introduction}
+
+\section{The gladiator arena}
+The gladiator arena has grown out of the traditional idea of the arena fight as a way to get to know combat options. The main thrust of this `dungeon' is indeed a gladiator arena with \(3+\) rounds. Will the characters survive? Only if they keep their wits about them, and do not discount the information they can gain backstage.
+
+\chapter{Adventure}
+
+There are basically two locations in this adventure:
+\begin{itemize}
+\item Backstage
+\item The arena
+\end{itemize}
+
+\section{Backstage}
+\begin{commentbox}
+Possible humour ideas include:
+\begin{itemize}
+\item Cake or death!
+\end{itemize}
+\end{commentbox}
+Somehow, someway, the PCs have ended up captive by an evil ruler and are to be forced to fight in the arena. All of their possessions which are deemed not useful for combat (coins, etc.) have been confiscated
+
+\begin{gmtip}
+At this point, the GM should make a note of what is take and treat it as Signature Gear (i.e.~always provide an opportunity for players to take back their stuff if they wish).
+\end{gmtip}
+
+They will almost immediately find the local 'guide' who will tell them:
+\begin{itemize}
+\item The arena is deadly
+\item All the stuff is kept in PLACENAMETOBETHOUGHTOF
+\begin{itemize}
+\item To get to PLACENAMETOBETHOUGHTOF, you have to become The Champion of the Arena.
+\item (it should be obvious to players that they can probably plan some crazy attempt to get the stuff, which should be allowed, but not until after at least one session in the arena.)
+\end{itemize}
+\end{itemize}
+
+In general, backstage is damp, -3 to visibility, and slippery (-3 to bad footing).
+
+\begin{commentbox}
+TODO find out slippery slip slip bonuses which would be appropriate. TODO maybe also make a map? Maybe an auto generated dungeon map in a semi-circle hugging the arena shape. This could be made with the shape constants thing.
+\end{commentbox}
+
+\subsection{Story hook: Eric's comrade}
+\begin{firstperson}
+The elf hung in pathetic majesty. His wings stretched out by chains, his hands and feet bound to the walls. After speaking for some time to his new friend, Eric, he let out a sigh.
+
+`I was not always this way\ldots{}
+
+`There was a time when the very mention of my name would have brought legions to my side. Now, I am worn out with little hope of life beyond this week. I hope you find your home, Elvenkin.'
+
+And with that, he turned his gaze to look out to the arena. The crowd had started to cheer; The Champion stepped out again \ldots{}.
+\end{firstperson}
+
+In the dungeon there is a single winged elf (ST~20, DX~12, IQ~12, effective~HT~8), named Aiden (if it comes up), who will recognise Eric as one of the ruling families who have been deposed by some other, probably evil, ruling family. He calls Eric by the name `Ríchíosa' (REE-hee-o-sa; Irish for royalty) and holds his family (The `saighdeoir' sag-doh-EER [archer in irish] family) as the rightful rulers of the winged elves.
+
+When asked for information, he reveals that the kingdom of winged elves is not in a good state, with heavy taxes and basically King Noah levels of unrighteousness. Regarding the arena, he can recall the number of rounds and basic information, but will fall unconcious if pressed further.
+
+If the players attempt to heal him, treat him as having -19/20~HP with 1~FP. The effort of talking for more than a few minutes drains his remaining FP (e.g. all 1 of it).
+
+\begin{character}{20, 12, 12, 10}
+\setPer{15}
+\disadvantage{Very Unfit}{-15}
+\disadvantage{Sense of Duty (Ríchíosa)}{-15}
+\skill{Bow}[DX/Average]{15}
+\skill{Fast-Draw (Arrow)}[DX/Easy]{15}
+\skill{Knife}[DX/Easy]{18}
+\end{character}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

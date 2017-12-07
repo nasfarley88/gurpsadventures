@@ -1,0 +1,296 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If you just want to start typing, scroll down!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,twocolumn]{memoir}
+\usepackage{tgpagella}
+\usepackage[svgnames]{xcolor}
+\usepackage{todonotes}
+\usepackage{blindtext}
+\usepackage{xspace}
+\usepackage{xparse}
+\usepackage{tikz}
+\usepackage{nth}
+
+% CUSTOM PACKAGE
+\usepackage{gurps}
+
+\usetikzlibrary{calc}
+
+\NewDocumentCommand{\captainone}{}{CAPTAIN~ONE\xspace}
+\NewDocumentCommand{\captaintwo}{}{CAPTAIN~2\xspace}
+\NewDocumentCommand{\captainthree}{}{CAPTAIN~3\xspace}
+\NewDocumentCommand{\captainfour}{}{CAPTAIN~4\xspace}
+\NewDocumentCommand{\captainfive}{}{CAPTAIN~5\xspace}
+
+\NewDocumentCommand{\thecompany}{}{The~Company\xspace}
+
+\NewDocumentCommand{\aventis}{}{\textsc{Aventis}\xspace}
+\NewDocumentCommand{\class}{m}{Class~#1\xspace}
+\NewDocumentCommand{\deafies}{}{NotDeafies\xspace}
+\NewDocumentCommand{\deafisland}{}{Deaf Island\xspace}
+\NewDocumentCommand{\cent}{m}{\nth{#1} century \textsc{a.d.}\xspace}
+
+% \NewDocumentCommand{\vantage}{mm}{#1~\mbox{(#2~pt)}}
+% \NewDocumentCommand{\skill}{mm}{#1~\mbox{(#2~pt)}}
+
+% \NewDocumentEnvironment{gurpslens}{m}{%
+%   \noindent\textcolor{gray}{\rule{\linewidth}{2mm}}\\%
+%   {\Large\bfseries #1}\\%
+% }{%
+%   \textcolor{gray}{\rule{\linewidth}{2mm}}\\%
+% }
+
+\title{Aventis\thanks{\SJGamesOnlinePolicyGameAid{Nathanael Farley}}}
+\author{Benedict Farley, Nathanael Farley, Dominic Gaskell and Michael King}
+
+
+
+% helper macros
+\newcommand{\ChapWithNumber}[1]{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[yshift=-3cm] at (current page.north west) {
+      \begin{tikzpicture}[remember picture, overlay]
+        \draw[fill=DarkBlue] (3,0) rectangle ($(\stockwidth,3cm) - (3,0)$);
+        % \node[anchor=east,xshift=.9\stockwidth,rectangle, rounded corners=20pt,inner sep=11pt, fill=MidnightBlue] {\color{white}\chapnamefont\thechapter\space #1};
+        \node at (0.5\stockwidth,1.5cm)  [anchor=center] {\color{white}\chapnamefont\thechapter\space #1};
+      \end{tikzpicture}
+    };
+  \end{tikzpicture}
+}
+
+\newcommand{\ChapWithoutNumber}[1]{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[yshift=-3cm] at (current page.north west) {
+      \begin{tikzpicture}[remember picture, overlay]
+        \draw[fill=LightSkyBlue] (0,0) rectangle (\stockwidth,3cm);
+        \node[anchor=east,xshift=.9\stockwidth, rectangle, rounded corners=20pt,inner sep=11pt,  fill=MidnightBlue] {\color{white}\chapnamefont#1};
+      \end{tikzpicture}
+    };
+  \end{tikzpicture}
+}
+
+\newif\ifnumberedchap
+
+\numberedchaptrue
+\makechapterstyle{texblogtikz}{
+  \renewcommand\chapnamefont{\normalfont\Huge\bfseries}
+  \renewcommand\chapnumfont{\normalfont\Huge\bfseries}
+  \renewcommand\chaptitlefont{\normalfont\Huge\bfseries}
+  \renewcommand\chapternamenum{}
+  \renewcommand{\afterchapternum}{}
+  \renewcommand\printchaptername{}
+  \renewcommand\printchapternum{}
+  \renewcommand\printchapternonum{\global\numberedchapfalse}
+  \renewcommand\printchaptertitle[1]{%
+    \ifnumberedchap
+    \ChapWithNumber{##1}
+    \else
+    \ChapWithoutNumber{##1}
+    \fi
+    \global\numberedchaptrue
+  }
+}
+
+\chapterstyle{texblogtikz}
+\begin{document}
+\maketitle{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Here's where you start typing if you don't want to 
+% sort out formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+{\itshape
+
+  The ship shook into life. Built in space and designed to last 150~years,
+  Gerard Cena was proud just to be service engineer 3rd class on this magnificent
+  machine.
+
+  ``She's a beaut isn't she?'' the captain remarked. ``10~years in the making.
+  Hopefully she'll take us all the way there, eh?!'' he said with a slap on the
+  back. `There' was Zircon, a distant colony which was due to be seeded in
+  100~years by a ship that had left prior. Gerard wondered whether we would
+  indeed arrive, or whether the ship's systems would give out half way. The
+  distance to be travelled was vast\ldots{}
+
+}
+
+\bigskip
+
+Welcome to the \aventis, the multi-generational ship to the stars! Over the
+journey of 150~years, there is much adventure to be had from strange unknown
+planets to the challenges of deep space travel.
+
+This adventure can be played at any point along the journey of the \aventis from
+space dock to landing in the ocean of Zircon~5.
+
+\todo[inline]{Say something about colony ships in general and stuff.}
+
+\chapter{Setting}
+
+\gurps-wise, this is a TL7 to TL9 setting. All technology should be treated as
+sufficiently advanced that it does not need to be considered (until it
+\emph{does!}).
+
+Psi is real in the world of \aventis. It works by putting minds in resonance with
+each other, so things that interfere with electrons interfere with psi
+(e.g.~faraday cage, etc.). Sensing others minds results in seeing their current
+thoughts. Probing memories can be achieved by bringing those memories to the
+recollection of the subject. Pushing, or putting thoughts into people's minds,
+is much harder and beyond the reach of an ordinary 100~pt human. In general,
+it's questioned whether pushing is even possible.
+
+
+\section{A brief history}
+\label{sec:brief-history}
+
+There are 5 captains that have `commanded' the \aventis. `Commanded' is in quotes because there is not a lot of commanding to do on a ship that only meets planets every 5--10~years and rarely, if ever, entertains off-ship guests.
+
+The first captain, \captainone, was a highly decorated officer in \thecompany. Being the first ship of it's class to set sail commercially, \captainone was eager to make a good impression. Their ship was a model of efficiency and negotiation
+
+Alas, all good things must come to an end.
+
+As the captains went through the 2nd (\captaintwo), 3rd, (\captainthree), 4th (\captainfour) and even 5th captain (\captainfive), the responsibilities of the captain diminished and the quality of leadership on the captain diminished. By the time \captainfive was on the scene, the position of captain was little more than a figurehead. The 2nd in command did most of the day to day work of assigning duty rosters and sorting disputes. Only in the most severe/high~profile cases did the captain deign to intervene.
+
+
+% I like the timeline idea here. If I can make it work!
+
+\chapter{NPCs}
+
+\section{\deafies}
+\label{sec:teledeafs}
+
+The \deafies are a group of Deaf\footnote{Note the distinction between Deaf as a
+  culture and deaf as a medical condition} people who boarded the \aventis to
+start a new settlement which eschews traditional voice communication and favours
+sign~language and telepathy.
+
+In the \cent{21}, a growing movement of Deaf people started to explore the
+idea of `deaf gain' rather than hearing loss. While most in this movement were
+simply pushing against the status quo that deafness needed to be cured rather
+than adapted for, some took this much futher. A small group of Deaf people
+bought an island off the coast of the British Isles and started to live without
+any use of sound. This island was dubbed \deafisland.
+
+Over the centuries the population of \deafisland remained small but the resolve
+of those living their only grew. In the \cent{24}, deafness was all but
+eliminated in the general population. The \deafies became self appointed
+custodians of Deaf culture, collecting information from throughout the world.
+
+By the time the \aventis set sail, \deafisland was beginning to collapse amidst rising
+sea levels and tectonic shifts. The leaders of the \deafies decided to try to
+find a new home, one where they could expand and live away from the influcence
+of hearing folk.
+
+\subsection{Lenses}
+\label{sec:templates-deafies}
+An ordinary citizen of the \deafies is much like their hearing counterpart, with
+only a few alterations.
+
+\begin{lens}{IQ=11}
+  \advantage{Telecommuncation (Radio, +40\% Video\noexpand\footnotemark, -20\% Racial)}[12]
+  \advantage{Common Sign Language (CSL)}[0]
+  \advantage{Written CSL}[0]
+  \advantage{Common English}[3]
+  \disadvantage{Deaf}[-15]
+  \disadvantage{Cannot speak}[-5]
+\end{lens}
+\footnotetext{e.g.~can send video of thoughts through mind's eye.}
+
+% \begin{gurpslens}{Deaf\hfill 0~pt}
+%   Basic stats: \vantage{+1~IQ}{20}\\[1em]
+%   Advantages:
+%   \vantage{Telecommuncation (Radio, +40\% Video\footnote{e.g.~can send video of
+%       thoughts through mind's eye.},
+%     -20\% Racial)}{12}, \\[1em]
+%   Disadvantages: \vantage{Deafness}{-20}, \vantage{Cannot Speak}{-15}\\[1em]
+%   Skills: \skill{Common Sign Language (CSL)}{0}, \skill{Written CSL}{0}, \skill{Common English}{3}\\[1em]
+%   Comments: Many children born to \deafies are hearing (e.g.~can hear and
+%   speak). For these, simply remove Deafness and Cannot Speak.
+% \end{gurpslens}
+
+\section{Bots}
+\label{sec:bots}
+
+Robots (or Bots) had been on the edge of sentience for some time when the
+\aventis set sail. During the \aventis' voyage, some bots claim sentience and
+set up The~Bot~Centre (informally known as Bot~Church). 
+
+Most bots are not close to sentience and serve one function or closely knit set of functions. Humanoid robots are rare, limited to rich human facing functions (e.g.~casinos) or research bots. 
+
+\todo[inline]{Add bots according to Ben's drawings.}
+
+Since this is the future, even the dumbest dishwashers are capable of advanced
+calculations such as astrogation and solving differential equations (as long as
+they're provided with the appropriate inputs) e.g.~knowing how long their power
+will last based on previous usage, anticipating peak usage times, etc..
+
+\subsection{New traits}
+\label{sec:new-traits}
+
+\subsubsection{Common Machine Interface (CMI)}
+\label{sec:comm-mach-interf}
+
+This is a language that all machines speak. Few humans speak it fluently
+(\(\sim\)~1~to~5~people on the ship) with most humans opting to speak English or
+a more human friendly language which compiles to CMI.\todo[inline]{Think of cool
+backronymn for CMILAR}
+
+Machines that communcate directly using CMI transmit information at 10x the
+average rate for a human\footnote{To communicate faster, a domain specific
+  language should be constructed using ordinary \gurps rules for languages.
+  \todo[inline]{Figure out how to transmit info very fast in \gurps rules.}}.
+Native speakers of the language get +4 to understand the langauage in
+circumstances that require a dice roll (e.g.~through interference).
+
+Note that CMI is not machine code. Machine code dialects are instructions
+designed for specific processors; there is only one dialect of CMI which is
+shared between all (legal) machines on the ship.
+
+\subsection{Classes}
+\label{sec:classes}
+
+Bots fit into several classes, ordered (conveniently) by \gurps~IQ. All bots
+speak Common Machine Interface (CMI).
+
+\subsubsection{IQ 0}
+\label{sec:iq-0-3}
+
+\class{0} bots are dumb machines (e.g.~dishwashers, `smart' lightbulbs). If they
+have any intelligence, it is entirely based on basic if-type logic. Although
+formally classed as bots, often these are simply called machines. The only
+difference between a simple machine and a bot of \class{0} is the level of
+automation. Bots can \emph{always} operate independently after being switched
+on.
+
+Note that, unlike today's bots, all bots can speak as a form of output and
+understand basic voice commands (e.g.~Who are you? What is your purpose?).
+However, just because the \emph{can} speak, doesn't mean they'll speak to anyone
+but their direct `superior'!
+
+% TODO Finish this! Make it a good template to build other bots on.
+% \begin{gurpslens}{Machine (\class{0} bot)\hfill 0~pt}
+%   Basic stats: \vantage{0~IQ}{-100}\\[1em]
+%   Advantages:
+%   \vantage{CMI (Native)}{0},
+%   \vantage{English (Native)}{6}
+%   \vantage{Unliving}{20},
+%   \\[1em]
+%   Disadvantages:
+%   \vantage{Cannot Learn}{-30},
+%   \vantage{Low Empathy}{-20}
+%   \vantage{No Empathy}{-10},
+%   \vantage{No Sense of Smell/Taste}{-5},
+%   \vantage{Reprogrammable}{-10},
+%   \vantage{Restricted Diet (power from ships systems)}{-10},
+%   \\[1em]
+% \end{gurpslens}
+
+\chapter{Adventure seeds}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
