@@ -155,6 +155,57 @@ As the captains went through the 2nd (\captaintwo), 3rd, (\captainthree), 4th (\
 
 % I like the timeline idea here. If I can make it work!
 
+\chapter{New traits}
+\label{cha:new-traits}
+
+\section{Telepathy}
+\label{sec:telepathy}
+
+Telepathy is a large part of life on the \aventis. In order to simplify the use
+of telepathy in the game, 3 skills are used:
+
+\subsection{Telesend (IQ/Easy)}
+\label{sec:telesend-iqeasy}
+
+As the advantage with the same name (B91) with the following modifiers:
+\begin{itemize}
+\item uses \emph{Short Wave} limitation (B91)
+\item use as a skill with IQ/Easy (default IQ-4)
+\item use range modifiers (B548) instead of long range modifiers
+\item can send video at the speed of TV
+\item subjects must roll against Telerecieve (below) to notice/recieve the message
+\end{itemize}
+
+Note that in non-stressful situations (e.g.~family settings, causal dining,
+etc.) apply +4 modifier or forgo the roll.
+
+\subsection{Telereceive (IQ/Easy)}
+\label{sec:telereceive-iqeasy}
+
+As the advantage with the same name (B91) with the following modifiers:
+\begin{itemize}
+\item uses \emph{Short Wave} limitation (B91)
+\item use as a skill with IQ/Easy (default IQ-4)
+\end{itemize}
+
+Note that in non-stressful situations (e.g.~family settings, causal dining,
+etc.) apply +4 modifier or forgo the roll.
+
+\subsection{Telepush (IQ/Very Hard)}
+\label{sec:telepush-iqveryhard}
+
+Requires Telesend (\autoref{sec:telesend-iqeasy}). Cannot use untrained.
+
+To use, establish a connection with the subject via Telesend. On a success, roll
+a quick contest of the subject's Will and caster's Telepush skill. If the caster
+wins the quick contest, the idea is planted. If the subject wins, the subject
+ignores the idea or never recieves it (GM's choice).
+
+\subsubsection{Critical rolls}
+On critical success, the player can insert another idea in the mind of the
+subject for free. If the caster critical fails, the subject knows there was an
+attempted push!
+
 \chapter{NPCs}
 
 \section{\deafies}
@@ -182,18 +233,20 @@ sea levels and tectonic shifts. The leaders of the \deafies decided to try to
 find a new home, one where they could expand and live away from the influcence
 of hearing folk.
 
-\subsection{Lenses}
+\subsection{Templates}
 \label{sec:templates-deafies}
 An ordinary citizen of the \deafies is much like their hearing counterpart, with
 only a few alterations.
 
-\begin{lens}{IQ=11}
-  \advantage{Telecommuncation (Radio, +40\% Video\noexpand\footnotemark, -20\% Racial)}[12]
+\begin{lens}{}
   \advantage{Common Sign Language (CSL)}[0]
   \advantage{Written CSL}[0]
   \advantage{Common English}[3]
   \disadvantage{Deaf}[-15]
   \disadvantage{Cannot speak}[-5]
+
+  \skill{Telesend}[IQ/Easy]{13}
+  \skill{Telerecieve}[IQ/Easy]{14}
 \end{lens}
 \footnotetext{e.g.~can send video of thoughts through mind's eye.}
 
