@@ -17,6 +17,8 @@
 
 \usepackage{luacode}
 
+\usepackage{gurps}
+
 \setlength{\RaggedRightParindent}{\parindent}
 
 \newtcolorbox{commentbox}{colback=red!5!white,colframe=red!75!black,title=Comment}
@@ -34,31 +36,6 @@
 \title{The Gladiator Arena}
 \author{Nathanael Farley}
 
-\luadirect{require("gurps.lua")}
-\typeout{(gurps.lua)}
-
-\newenvironment{character}[1]{%
-  \luadirect{character = create_character(#1)}%
-}{%
-  \luadirect{print_character()}
-}
-\newcommand\disadvantage[2]{%
-  \luadirect{character.disadvantages["#1"] = vantage(#2)}
-}
-\newcommand\advantage[2]{%
-  \luadirect{character.advantages["#1"] = vantage(#2)}
-}
-\NewDocumentCommand\skill{mom}{%
-  \IfNoValueTF{#2}
-  {\luadirect{character.skills["#1"] = valued_trait(#3)}}
-  {% \luadirect{character.skills["#1"] = valued_trait(#3)}
-    \luadirect{
-      x = split("#2")
-      points = calculate_skill_points(x[1], x[2], #3)
-      character.skills["#1"] = valued_trait(#3, points)
-    }
-  }
-}
 
 \begin{document}
 \RaggedRight
@@ -122,14 +99,14 @@ When asked for information, he reveals that the kingdom of winged elves is not i
 
 If the players attempt to heal him, treat him as having -19/20~HP with 1~FP. The effort of talking for more than a few minutes drains his remaining FP (e.g. all 1 of it).
 
-\begin{character}{20, 12, 12, 10}
-\setPer{15}
-\disadvantage{Very Unfit}{-15}
-\disadvantage{Sense of Duty (Ríchíosa)}{-15}
-\skill{Bow}[DX/Average]{15}
-\skill{Fast-Draw (Arrow)}[DX/Easy]{15}
-\skill{Knife}[DX/Easy]{18}
+\begin{character}{ST=20, DX=12, IQ=12, HT=10, Per=15}
+  \disadvantage{Very Unfit}[-15]
+  \disadvantage{Sense of Duty (Ríchíosa)}[-15]
+  \skill{Bow}[DX/Average]{15}
+  \skill{Fast-Draw (Arrow)}[DX/Easy]{15}
+  \skill{Knife}[DX/Easy]{18}
 \end{character}
+
 \end{document}
 
 %%% Local Variables:
