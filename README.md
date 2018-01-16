@@ -11,3 +11,14 @@ simply download the package with git and install it:
     make inst
 
 Note that it requires the use of LuaLaTeX.
+
+## Making the projects
+To make all the projects:
+
+    make
+    
+(or for a faster compile time
+
+    make -j4
+    
+where 4 is the number of cores.)
