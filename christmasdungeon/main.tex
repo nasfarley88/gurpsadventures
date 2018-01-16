@@ -1,0 +1,59 @@
+\documentclass[a4paper,twocolumn]{memoir}
+
+\usepackage{xparse}
+\usepackage{gurps}
+
+% Fonts
+\usepackage{libertine}
+\renewcommand*\familydefault{\sfdefault}
+
+\NewDocumentEnvironment{vignette}{}{\noindent\itshape}{\noindent}
+
+\begin{document}
+
+\chapter{Rooms}
+\label{cha:rooms}
+
+\subsection{Candy cane golem}
+\label{sec:candy-cane-golem}
+
+\begin{vignette}
+  The gooey mess heaved as it laid on the floor. As the adventurers approached,
+  the mass \emph{stood up}! Towering above the adventurers, 12 feet of candy
+  cane formed a huge golem, and roared like the fire of a thousand kilns. 
+\end{vignette}
+
+This room consists of an actual kiln and a candy cane golem (below). The candy
+cane golem is really a fire elemental trapped inside candy cane and it is
+\emph{angry} about it. The heat of the fire elemental is the only way the candy
+cane stays mobile. If for any reason the fire elemental loses it's fire/heat,
+the golem becomes immobile.
+
+
+\begin{character}{
+    ST=21,
+    DX=12,
+    IQ=8,
+    HT=12,
+    Will=10,
+    SM=2
+  }
+  \skill{Brawling}[IQ/Easy]{16}
+\end{character}
+
+\subsection{Blizzard room}
+\label{sec:blizzard-room}
+
+
+\subsection{Krampus}
+\label{sec:krampus}
+
+\IfFileExists{krampus.tex}{\input{krampus}}{}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
