@@ -7,10 +7,10 @@ jobs:
       - checkout
       - run:
           name: Checkout GURPS LaTeX package
-          command: git clone https://github.com/nasfarley88/gurps-latex-package
+          command: git -C / clone https://github.com/nasfarley88/gurps-latex-package
       - run:
           name: Make GURPS LaTeX package
-          command: make -C gurps-latex-package/source inst
+          command: make -C /gurps-latex-package/source inst
       - run:
           name: Make the projects
           command: make
