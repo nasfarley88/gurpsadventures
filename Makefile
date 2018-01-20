@@ -12,11 +12,15 @@ endef
 
 all: $(MAIN_PDFS)
 	if [[ -v CIRCLE_ARTIFACTS ]]; then \
-		cp *.pdf ${$CIRCLE_ARTIFACTS}/;\
+		cp *.pdf ${CIRCLE_ARTIFACTS}/;\
 	else \
-		echo Not in Circle CI\; no files copied.;\
+		echo Not in Circle CI;\
 	fi;
 	@echo All projects made.
+
+/tmp/circle-artifacts/%-main.pdf: $/main.pdf
+	mkdir -p /tmp/circle-artifacts
+	cp $< $@
 
 %-main.pdf: %/main.pdf
 	cp $< $@
