@@ -15,5 +15,5 @@ jobs:
           name: Make the projects
           command: make
       - store_artifacts:
-          path: /tmp/circle-artifacts
+          path: /tmp/circle-artifacts/gurpsadventures
 
