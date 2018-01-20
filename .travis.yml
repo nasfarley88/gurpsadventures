@@ -1,0 +1,31 @@
+sudo: required
+
+# services:
+#   - docker
+
+# language:
+#   - latex
+
+# before_install:
+#   - docker pull aergus/latex
+#   - 
+dist: trusty
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
+script:
+  - git clone https://github.com/nasfarley88/gurps-latex-package
+  - make -C gurps-latex-package/source inst
+  - make
+# - mkdir _build
+# - pdflatex -interaction=nonstopmode -halt-on-error -output-directory _build tex/your_file_1.tex
+# - pdflatex -interaction=nonstopmode -halt-on-error -output-directory _build tex/your_file_2.tex
+# deploy:
+#   provider: releases
+#   api_key:
+#     secure: [YOUR KEY]
+#   file:
+#   - _build/your_file_1.pdf
+#   - _build/your_file_2.pdf
+#   skip_cleanup: true
+#   on:
+# tags: true
