@@ -11,16 +11,18 @@ define clean_folder
 endef
 
 all: $(MAIN_PDFS)
-	if ${$CIRCLE_ARTIFACTS}
-		cp *.pdf ${$CIRCLE_ARTIFACTS}/
-	endif
+	if [[ -v CIRCLE_ARTIFACTS ]]; then \
+		cp *.pdf ${$CIRCLE_ARTIFACTS}/;\
+	else \
+		echo Not in Circle CI\; no files copied.;\
+	fi;
 	@echo All projects made.
 
 %-main.pdf: %/main.pdf
 	cp $< $@
 
 %/main.pdf: %/*.tex
-	$(MAKE) -C $(shell dirname $<)
+	$(MAKE) -C $(shell dirname $<) -j$(nproc)
 
 clean:
 	for folder in $(PROJECT_FOLDERS); do cd $$folder; make clean; cd -; done
