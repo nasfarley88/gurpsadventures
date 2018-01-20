@@ -13,7 +13,6 @@ jobs:
           command: make -C /gurps-latex-package/source inst
       - run:
           name: Make the projects
-          command: make
+          command: make -j$(nproc)
       - store_artifacts:
           path: /tmp/circle-artifacts/gurpsadventures
-
