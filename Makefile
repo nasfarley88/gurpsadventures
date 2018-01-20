@@ -11,6 +11,9 @@ define clean_folder
 endef
 
 all: $(MAIN_PDFS)
+	if ${$CIRCLE_ARTIFACTS}
+		cp *.pdf ${$CIRCLE_ARTIFACTS}/
+	endif
 	@echo All projects made.
 
 %-main.pdf: %/main.pdf
