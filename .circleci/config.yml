@@ -10,8 +10,8 @@ jobs:
           command: git clone https://github.com/nasfarley88/gurps-latex-package
       - run:
           name: Make GURPS LaTeX package
-          command: make -C gurps-latex-package inst
+          command: make -C gurps-latex-package/source inst
       - run:
           name: Make the projects
-          command: make -j2
+          command: make
 
