@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: aergus/latex
+    steps:
+      - checkout
+      - run:
+          name: Checkout GURPS LaTeX package
+          command: git clone https://github.com/nasfarley88/gurps-latex-package
+      - run:
+          name: Make GURPS LaTeX package
+          command: make -C gurps-latex-package inst
+      - run:
+          name: Make the projects
+          command: make -j2
