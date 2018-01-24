@@ -13,7 +13,7 @@ endef
 
 all: $(MAIN_PDFS)
 	mkdir -p /tmp/circle-artifacts/gurpsadventures
-	cp *.pdf /tmp/circle-artifacts/gurpsadventures
+	cp **/*.pdf /tmp/circle-artifacts/gurpsadventures
 	@echo All projects made.
 
 %-main.pdf: %/main.pdf
