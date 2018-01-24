@@ -1,6 +1,5 @@
 PROJECT_FOLDERS = $(wildcard */)
 PROJECT_PDFS = $(patsubst %/,%/main.pdf,$(PROJECT_FOLDERS))
-MAIN_PDFS = $(patsubst %/main.pdf,%-main.pdf,$(PROJECT_PDFS))
 CIRCLE_PDFS = $(patsubst %/main.pdf,/tmp/circle-artifacts/%-main.pdf,$(PROJECT_PDFS))
 SUB_FOLDER_PDFS = %/main.pdf
 
@@ -11,13 +10,10 @@ define clean_folder
 	make -C $(1) clean
 endef
 
-all: $(MAIN_PDFS)
+all: $(PROJECT_PDFS)
 	mkdir -p /tmp/circle-artifacts/gurpsadventures
-	cp **/*.pdf /tmp/circle-artifacts/gurpsadventures
+	rsync -a --prune-empty-dirs --include '**/' --include '*.pdf' --exclude '*' ./ /tmp/circle-artifacts/gurpsadventures/
 	@echo All projects made.
-
-%-main.pdf: %/main.pdf
-	cp $< $@
 
 %/main.pdf: %/*.tex
 	$(MAKE) -C $(shell dirname $<)
