@@ -12,7 +12,7 @@ endef
 
 all: $(PROJECT_PDFS)
 	mkdir -p /tmp/circle-artifacts/gurpsadventures
-	rsync -a --prune-empty-dirs --include '**/' --include '*.pdf' --exclude '*' ./ /tmp/circle-artifacts/gurpsadventures/
+	find . -name '*.pdf' -exec cp --parents \{\} /tmp/circle-artifacts/gurpsadventures \;
 	@echo All projects made.
 
 %/main.pdf: %/*.tex

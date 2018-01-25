@@ -6,9 +6,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Get rsync
-          command: apt-get install rsync -y
-      - run:
           name: Checkout GURPS LaTeX package
           command: git -C / clone https://github.com/nasfarley88/gurps-latex-package
       - run:
