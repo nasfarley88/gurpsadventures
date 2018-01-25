@@ -20,5 +20,4 @@ all: $(PROJECT_PDFS)
 
 clean:
 	for folder in $(PROJECT_FOLDERS); do cd $$folder; make clean; cd -; done
-	rm $(MAIN_PDFS)
 	rm -r /tmp/circle-artifacts
